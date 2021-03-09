@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # dind
+echo "running dind..."
 docker run --name jenkins-docker --rm --detach \
   --privileged --network jenkins --network-alias docker \
   --env DOCKER_TLS_CERTDIR=/certs \
@@ -9,6 +10,7 @@ docker run --name jenkins-docker --rm --detach \
   --publish 2376:2376 docker:dind
 
 # jenkins
+echo "running jenkins..."
 docker run --name jenkins --rm --detach \
   --dns 8.8.8.8 \
   --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
