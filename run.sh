@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+docker network create jenkins || true
+
 # dind
 echo "running dind..."
-docker run --name jenkins-docker --rm --detach \
+docker run --name dind --rm --detach \
   --privileged --network jenkins --network-alias docker \
   --env DOCKER_TLS_CERTDIR=/certs \
   --volume jenkins-docker-certs:/certs/client \
