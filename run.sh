@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-docker network create jenkins || true
+docker network inspect jenkins >/dev/null 2>&1 || \
+    docker network create jenkins
 
 # dind
 echo "running dind..."
